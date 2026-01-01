@@ -1,5 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { GraduationCap } from "lucide-react"
+import Image from "next/image"
 
 const universityLogos: Record<string, string> = {
   "Université Ibn Zohr, Agadir": "/logo tamayouz transparent.png",
@@ -12,7 +11,7 @@ const education = [
     degree: "Master's in Computer Engineering and Embedded Systems",
     program: "Excellence Program",
     institution: "Université Ibn Zohr, Agadir",
-    period: "2024 - 2026 (Expected)",
+    period: "2024 - 2026",
   },
   {
     degree: "Bachelor's in Computer Engineering and Embedded Systems",
@@ -27,7 +26,8 @@ const education = [
     period: "2022 - 2023",
   },
   {
-    degree: "University Technology Diploma in Industrial Computing and Automated Systems",
+    degree: "University Technology Diploma",
+    program: "Industrial Computing and Automated Systems",
     institution: "Université IBN TOFAIL, Kenitra",
     period: "2020 - 2022",
   },
@@ -40,50 +40,43 @@ const education = [
 
 export function EducationSection() {
   return (
-    <section id="education" className="relative py-24 px-4">
-      <div className="absolute inset-0 circuit-pattern opacity-50" />
-      <div className="absolute top-20 left-10 w-72 h-72 bg-accent/10 rounded-lg blur-3xl animate-float" />
-      <div className="absolute bottom-20 right-10 w-64 h-64 bg-primary/10 rounded-lg blur-3xl animate-float-delayed" />
-
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="p-3 bg-accent/20 rounded-lg border border-accent/50 tech-glow">
-            <GraduationCap className="h-6 w-6 text-accent" />
+    <section id="education" className="relative py-32 px-6 lg:px-12 border-b border-b-minimal">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-4">
+            <div className="sticky top-32">
+              <div className="space-y-4">
+                <div className="w-16 h-px bg-primary" />
+                <h2 className="text-5xl lg:text-6xl font-serif text-foreground">Education</h2>
+              </div>
+            </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold font-mono text-accent">Education</h2>
-        </div>
 
-        <div className="space-y-4">
-          {education.map((edu, index) => (
-            <Card
-              key={index}
-              className="bg-card/90 backdrop-blur-sm border border-border hover:border-accent transition-all hover:shadow-lg hover:shadow-accent/20 hover:-translate-x-2"
-            >
-              <CardHeader>
+          <div className="lg:col-span-8 space-y-10">
+            {education.map((edu, index) => (
+              <div key={index} className="space-y-3">
                 <div className="flex items-start gap-4">
-                  <div className="p-2 bg-gradient-to-br from-accent/20 to-primary/20 rounded-lg border border-accent/30">
-                    <img
-                      src={universityLogos[edu.institution] || "/placeholder.svg"}
-                      alt={edu.institution}
-                      className="h-10 w-10 object-contain"
-                    />
-                  </div>
-                  <div className="flex-1">
-                    <CardTitle className="text-lg text-balance leading-snug font-mono">{edu.degree}</CardTitle>
-                    {edu.program && (
-                      <CardDescription className="text-accent font-semibold font-mono">{edu.program}</CardDescription>
-                    )}
-                  </div>
-                  <div className="text-sm text-muted-foreground font-medium text-right whitespace-nowrap font-mono">
-                    {edu.period}
+                  <Image
+                    src={universityLogos[edu.institution] || "/placeholder.svg"}
+                    alt={edu.institution}
+                    width={48}
+                    height={48}
+                    className="w-12 h-12 object-contain"
+                  />
+                  <div className="flex-1 space-y-2">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h3 className="text-xl font-serif text-foreground leading-tight">{edu.degree}</h3>
+                        {edu.program && <p className="text-sm text-primary mt-1">{edu.program}</p>}
+                      </div>
+                      <p className="text-sm text-foreground/50 whitespace-nowrap">{edu.period}</p>
+                    </div>
+                    <p className="text-foreground/60 text-sm">{edu.institution}</p>
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground pl-16 font-mono text-sm">{edu.institution}</p>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

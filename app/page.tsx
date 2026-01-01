@@ -6,6 +6,7 @@ import { ProjectsSection } from "@/components/projects-section"
 import { EducationSection } from "@/components/education-section"
 import { ContactSection } from "@/components/contact-section"
 import { Navigation } from "@/components/navigation"
+import { MarqueeBar } from "@/components/marquee-bar"
 
 export default function PortfolioPage() {
   return (
@@ -13,6 +14,7 @@ export default function PortfolioPage() {
       <Navigation />
       <main>
         <HeroSection />
+        <MarqueeBar />
         <AboutSection />
         <ExperienceSection />
         <SkillsSection />

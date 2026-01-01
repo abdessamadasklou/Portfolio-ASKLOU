@@ -1,6 +1,4 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Briefcase } from "lucide-react"
+import Image from "next/image"
 
 const companyLogos: Record<string, string> = {
   "POWER INTEGRATION": "/2Q.png",
@@ -10,7 +8,7 @@ const companyLogos: Record<string, string> = {
 
 const experiences = [
   {
-    title: "Automatisation Engineer Intern",
+    title: "Final Year Internship",
     company: "POWER INTEGRATION",
     location: "Casablanca, Maroc",
     period: "April 2022 - June 2022",
@@ -49,65 +47,63 @@ const experiences = [
 
 export function ExperienceSection() {
   return (
-    <section id="experience" className="relative py-24 px-4 bg-muted/30">
-      <div className="absolute inset-0 circuit-pattern opacity-30" />
-      <div className="absolute top-10 right-10 w-64 h-64 bg-secondary/10 rounded-full blur-3xl" />
-
-      <div className="container mx-auto max-w-4xl relative z-10">
-        <div className="flex items-center gap-3 mb-8">
-          <div className="p-3 bg-secondary/20 rounded-lg border border-secondary/50 tech-glow">
-            <Briefcase className="h-6 w-6 text-secondary" />
+    <section id="experience" className="relative py-32 px-6 lg:px-12 border-b border-b-minimal">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid lg:grid-cols-12 gap-16">
+          <div className="lg:col-span-4">
+            <div className="sticky top-32">
+              <div className="space-y-4">
+                <div className="w-16 h-px bg-primary" />
+                <h2 className="text-5xl lg:text-6xl font-sans text-foreground">Experience</h2>
+              </div>
+            </div>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold font-mono text-secondary">Experience</h2>
-        </div>
 
-        <div className="space-y-6">
-          {experiences.map((exp, index) => (
-            <Card
-              key={index}
-              className="bg-card/90 backdrop-blur-sm border border-border hover:border-secondary transition-all hover:shadow-xl hover:shadow-secondary/20 hover:-translate-y-1"
-            >
-              <CardHeader>
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-                  <div className="flex-1">
-                    <CardTitle className="text-xl text-balance font-mono">{exp.title}</CardTitle>
-                    <div className="flex items-center gap-3 mt-2">
-                      <img
-                        src={companyLogos[exp.company] || "/placeholder.svg"}
-                        alt={exp.company}
-                        className="h-8 object-contain"
-                      />
-                      <CardDescription className="text-base text-secondary font-medium font-mono">
-                        {exp.company}
-                      </CardDescription>
+          <div className="lg:col-span-8 space-y-12">
+            {experiences.map((exp, index) => (
+              <div key={index} className="border-b border-foreground/10 pb-12 last:border-0 last:pb-0">
+                <div className="space-y-4">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-2 flex-1">
+                      <h3 className="text-2xl font-sans font-bold text-foreground">
+                        {exp.title} <span className="text-primary/60 font-medium">@ {exp.company}</span>
+                      </h3>
+                      <div className="flex items-center gap-3">
+                        <Image
+                          src={companyLogos[exp.company] || "/placeholder.svg"}
+                          alt={exp.company}
+                          width={80}
+                          height={32}
+                          className="h-8 w-auto object-contain"
+                        />
+                      </div>
+                      <p className="text-foreground/60">{exp.location}</p>
                     </div>
+                    <p className="text-sm text-foreground/50 whitespace-nowrap">{exp.period}</p>
                   </div>
-                  <div className="text-sm text-muted-foreground font-mono">
-                    <div className="font-medium">{exp.period}</div>
-                    <div>{exp.location}</div>
+
+                  <p className="text-foreground/70 leading-relaxed">{exp.description}</p>
+
+                  <ul className="space-y-2 text-sm text-foreground/60">
+                    {exp.achievements.map((achievement, i) => (
+                      <li key={i} className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>{achievement}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    {exp.skills.map((skill, i) => (
+                      <span key={i} className="text-xs px-3 py-1 border border-foreground/10 text-foreground/60">
+                        {skill}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <p className="text-muted-foreground leading-relaxed">{exp.description}</p>
-                <ul className="list-disc list-inside space-y-2 text-sm text-muted-foreground">
-                  {exp.achievements.map((achievement, i) => (
-                    <li key={i}>{achievement}</li>
-                  ))}
-                </ul>
-                <div className="flex flex-wrap gap-2">
-                  {exp.skills.map((skill, i) => (
-                    <Badge
-                      key={i}
-                      className="bg-secondary/20 text-secondary border border-secondary/30 hover:bg-secondary/30 font-mono text-xs"
-                    >
-                      {skill}
-                    </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
