@@ -4,8 +4,12 @@ import { Download } from "lucide-react"
 
 export function HeroSection() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 bg-background">
-      <div className="container mx-auto px-6 lg:px-12">
+    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 bg-background overflow-hidden">
+      <div className="absolute inset-0 circuit-pattern opacity-30 pointer-events-none" />
+      <div className="absolute top-1/4 left-10 w-32 h-32 border border-primary/20 rounded-full animate-pulse-slow pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-48 h-48 border border-primary/10 rounded-full animate-pulse-slow pointer-events-none" />
+
+      <div className="container mx-auto px-6 lg:px-12 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div className="space-y-2">
@@ -35,13 +39,13 @@ export function HeroSection() {
             </div>
           </div>
 
-          <div className="relative lg:justify-self-end">
-            <div className="relative w-full max-w-xl aspect-[3/4] bg-muted">
+          <div className="relative lg:justify-self-end w-full max-w-sm">
+            <div className="relative w-full aspect-[4/5] group">
               <Image
-                src="/pic.png"
+                src="/pic.png.bak"
                 alt="Abdessamad ASKLOU"
                 fill
-                className="object-cover grayscale"
+                className="object-cover transition-all duration-700 ease-in-out hover:scale-105"
                 priority
               />
             </div>

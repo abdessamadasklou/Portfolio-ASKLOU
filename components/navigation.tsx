@@ -1,9 +1,10 @@
 "use client"
 
-import { Github, Linkedin, Mail } from "lucide-react"
+import { Download, Github, Linkedin, Mail } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -22,17 +23,17 @@ export function Navigation() {
         }`}
     >
       <div className="container mx-auto px-6 lg:px-12 py-3">
-        <div className="flex items-center justify-between">
-          <Link href="/" className="group flex items-center gap-3">
-            <Image
-              src="/AS logo.png"
-              alt="Logo"
-              width={60}
-              height={60}
-              className="w-16 h-16 object-contain"
-            />
-          </Link>
+        <Link href="/" className="absolute -top-4 left-6 z-50 block">
+          <Image
+            src="/AS logo.png"
+            alt="Logo"
+            width={120}
+            height={120}
+            className="w-24 h-24 object-contain"
+          />
+        </Link>
 
+        <div className="flex items-center justify-end w-full gap-12">
           <div className="hidden md:flex items-center gap-12">
             <Link href="#about" className="text-sm uppercase tracking-wider hover:text-primary transition-colors">
               About
@@ -48,7 +49,14 @@ export function Navigation() {
             </Link>
           </div>
 
+
           <div className="flex items-center gap-6">
+            <Button variant="outline" size="sm" className="hidden sm:flex gap-2 border-foreground/20" asChild>
+              <a href="/Abdessamad ASKLOU CV.pdf" download>
+                <span className="uppercase tracking-wider font-normal">CV</span>
+                <Download className="h-4 w-4" />
+              </a>
+            </Button>
             <Link
               href="https://github.com/abdessamadasklou"
               target="_blank"
@@ -59,7 +67,7 @@ export function Navigation() {
               <span className="sr-only">GitHub</span>
             </Link>
             <Link
-              href="https://linkedin.com/in/abdessamad-asklou"
+              href="https://www.linkedin.com/in/abdessamad-asklou-023a15181/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-foreground/60 hover:text-primary transition-colors"
