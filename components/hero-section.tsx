@@ -5,7 +5,8 @@ import { Download } from "lucide-react"
 export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 bg-background overflow-hidden">
-      <div className="absolute inset-0 circuit-pattern opacity-30 pointer-events-none" />
+      <div className="absolute inset-0 drone-pattern opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 globe-pattern opacity-12 pointer-events-none" />
       <div className="absolute top-1/4 left-10 w-32 h-32 border border-primary/20 rounded-full animate-pulse-slow pointer-events-none" />
       <div className="absolute bottom-1/4 right-10 w-48 h-48 border border-primary/10 rounded-full animate-pulse-slow pointer-events-none" />
 

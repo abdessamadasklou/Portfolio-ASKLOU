@@ -1,15 +1,19 @@
 "use client"
 
-import { Download, Github, Linkedin, Mail } from "lucide-react"
+import { Download, Github, Linkedin, Mail, Moon, Sun } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
+import { useTheme } from "next-themes"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
     }
@@ -82,6 +86,18 @@ export function Navigation() {
               <Mail className="h-5 w-5" />
               <span className="sr-only">Email</span>
             </Link>
+
+            {mounted && (
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                className="text-foreground/60 hover:text-primary"
+              >
+                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                <span className="sr-only">Toggle theme</span>
+              </Button>
+            )}
           </div>
         </div>
       </div>
