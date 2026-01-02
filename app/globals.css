@@ -168,16 +168,26 @@
     opacity: 0.05;
   }
 
-  .circuit-pattern {
+  .drone-pattern {
     position: absolute;
     inset: 0;
     pointer-events: none;
     opacity: 0.1;
     background-image: url('/drone.png');
     background-repeat: no-repeat;
-    background-position: 90% 20%;
+    background-position: 70% 20%;
     background-size: 400px;
-    mask-image: none;
+  }
+
+  .globe-pattern {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.12;
+    background-image: url('/iot-globe.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 600px;
   }
 
 

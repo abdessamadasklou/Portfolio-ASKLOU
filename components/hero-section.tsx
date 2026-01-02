@@ -48,6 +48,7 @@ export function HeroSection() {
                 className="object-cover transition-all duration-700 ease-in-out hover:scale-105"
                 priority
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
             </div>
             <div className="mt-8">
               <Button
