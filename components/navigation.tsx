@@ -9,7 +9,7 @@ import { useTheme } from "next-themes"
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
@@ -21,6 +21,8 @@ export function Navigation() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const logoSrc = mounted && resolvedTheme === "dark" ? "/a.png" : "/AS logo.png"
+
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? "bg-background/95 backdrop-blur-sm border-b border-b-minimal" : "bg-transparent"
@@ -29,7 +31,7 @@ export function Navigation() {
       <div className="container mx-auto px-6 lg:px-12 py-3">
         <Link href="/" className="absolute -top-4 left-6 z-50 block">
           <Image
-            src="/AS logo.png"
+            src={logoSrc}
             alt="Logo"
             width={120}
             height={120}
@@ -91,10 +93,10 @@ export function Navigation() {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
                 className="text-foreground/60 hover:text-primary"
               >
-                {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                {resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                 <span className="sr-only">Toggle theme</span>
               </Button>
             )}

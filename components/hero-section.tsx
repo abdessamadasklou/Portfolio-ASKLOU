@@ -1,8 +1,21 @@
+"use client"
+
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
+import { useTheme } from "next-themes"
+import { useEffect, useState } from "react"
 
 export function HeroSection() {
+  const { resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const profileImage = mounted && resolvedTheme === "dark" ? "/dark.png" : "/pic.png.bak"
+
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 bg-background overflow-hidden">
       <div className="absolute inset-0 drone-pattern opacity-10 pointer-events-none" />
@@ -42,13 +55,17 @@ export function HeroSection() {
 
           <div className="relative lg:justify-self-end w-full max-w-sm">
             <div className="relative w-full aspect-[4/5] group">
-              <Image
-                src="/pic.png.bak"
-                alt="Abdessamad ASKLOU"
-                fill
-                className="object-cover transition-all duration-700 ease-in-out hover:scale-105"
-                priority
-              />
+              {mounted ? (
+                <Image
+                  src={profileImage}
+                  alt="Abdessamad ASKLOU"
+                  fill
+                  className="object-cover transition-all duration-700 ease-in-out hover:scale-105"
+                  priority
+                />
+              ) : (
+                <div className="w-full h-full bg-muted animate-pulse" />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent pointer-events-none" />
             </div>
             <div className="mt-8">
