@@ -4,11 +4,26 @@ const companyLogos: Record<string, string> = {
   "POWER INTEGRATION": "/2Q.png",
   "PLASTIC OMNIUM": "/Plastic_Omnium.svg.png",
   "ORDIKAZION INFORMATIQUE": "/ordika.jpg",
+  "ONEE-Water Branch": "/ONEE.png",
 }
 
 const experiences = [
   {
+    title: "Graduation Internship (PFE)",
+    company: "ONEE-Water Branch",
+    location: "Aït Baha, Maroc",
+    period: "February 2026 - June 2026",
+    description: "Designed and implemented a remote management and supervision system for a pumping station using the SOFREL S550 PLC.",
+    achievements: [
+      "Configured and wired the SOFREL S550 industrial programmable logic controller (PLC) and S50 input/output rack.",
+      "Programmed control logic and automatic pump switching rules under SOFTOOLS.",
+      "Developed real-time SCADA graphical pages and SMS alerts using PCWin to monitor alarms (dry running, motor overload) and sensor status.",
+    ],
+    skills: ["SOFREL S550", "SOFTOOLS", "PCWin", "SCADA", "Industrial Automation", "RTU / PLC"],
+  },
+  {
     title: "Final Year Internship",
+
     company: "POWER INTEGRATION",
     location: "Casablanca, Maroc",
     period: "April 2022 - June 2022",

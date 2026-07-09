@@ -30,6 +30,8 @@ const skillLogos: Record<string, string> = {
   Proteus: "https://i0.wp.com/arduinofactory.fr/wp-content/uploads/2021/07/proteus.png?fit=512%2C352&ssl=1",
   Hadoop: "https://p1.hiclipart.com/preview/758/901/237/google-logo-background-apache-hadoop-big-data-mapr-hadoop-distributed-filesystem-java-hortonworks-distributed-computing-png-clipart.jpg",
   Mosquitto: "https://repository-images.githubusercontent.com/53614190/b11dd480-90b3-11eb-903d-8c48f62e3172",
+  SOFTOOLS: "/softools.png",
+  PCWin: "/pcwin.png",
 }
 
 const skillCategories = [
@@ -82,7 +84,14 @@ const skillCategories = [
   },
   {
     category: "Automation",
-    skills: [{ name: "Tia-Portal", logo: skillLogos["Tia_Portal"] }, { name: "Step7", logo: skillLogos["Step7"] }, { name: "PLCSIM", logo: skillLogos["PLCSIM"] }, { name: "WINCC", logo: skillLogos["WINCC"] }],
+    skills: [
+      { name: "Tia-Portal", logo: skillLogos["Tia_Portal"] },
+      { name: "Step7", logo: skillLogos["Step7"] },
+      { name: "PLCSIM", logo: skillLogos["PLCSIM"] },
+      { name: "WINCC", logo: skillLogos["WINCC"] },
+      { name: "SOFTOOLS", logo: skillLogos["SOFTOOLS"] },
+      { name: "PCWin", logo: skillLogos["PCWin"] },
+    ],
   },
 ]
 
