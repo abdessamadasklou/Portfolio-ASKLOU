@@ -206,13 +206,28 @@
     opacity: 0.1;
     background-image: url('/drone.png');
     background-repeat: no-repeat;
-    background-position: 70% 20%;
+    background-position: 39% 10%;
+    background-size: 250px;
+    filter: var(--drone-filter, none);
+  }
+
+  .plc-pattern {
+    display: none;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.1;
+    background-image: url('/plc.png');
+    background-repeat: no-repeat;
+    background-position: 80% 20%;
     background-size: 300px;
     filter: var(--drone-filter, none);
   }
 
   @media (min-width: 768px) {
-    .drone-pattern {
+
+    .drone-pattern,
+    .plc-pattern {
       display: block;
     }
   }

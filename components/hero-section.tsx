@@ -5,10 +5,12 @@ import { Button } from "@/components/ui/button"
 import { Download } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
+import { useLanguage } from "@/lib/i18n/contexts"
 
 export function HeroSection() {
   const { resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const { language } = useLanguage()
 
   useEffect(() => {
     setMounted(true)
@@ -19,6 +21,7 @@ export function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 bg-background overflow-hidden">
       <div className="absolute inset-0 drone-pattern opacity-10 pointer-events-none" />
+      <div className="absolute inset-0 plc-pattern opacity-10 pointer-events-none" />
       <div className="absolute inset-0 globe-pattern opacity-12 pointer-events-none" />
       <div className="absolute top-1/4 left-10 w-32 h-32 border border-primary/20 rounded-full animate-pulse-slow pointer-events-none" />
       <div className="absolute bottom-1/4 right-10 w-48 h-48 border border-primary/10 rounded-full animate-pulse-slow pointer-events-none" />
@@ -27,27 +30,34 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="space-y-8">
             <div className="space-y-2">
-              <p className="text-sm uppercase tracking-widest text-muted-foreground">Iot | Embedded Systems | Automation</p>
+              <p className="text-sm uppercase tracking-widest text-muted-foreground">
+                {language === 'fr' ? 'IoT | Systèmes Embarqués | Automatisation' : 'Iot | Embedded Systems | Automation'}
+              </p>
               <h1 className="text-huge font-serif text-foreground">IoT</h1>
             </div>
 
             <div className="space-y-2">
-              <h1 className="text-huge font-serif text-foreground">Developer</h1>
+              <h1 className="text-huge font-serif text-foreground">
+                {language === 'fr' ? 'Développeur' : 'Developer'}
+              </h1>
             </div>
 
             <div className="space-y-6 pt-8 max-w-xl">
               <p className="text-foreground/60 text-lg leading-relaxed">
-                Hello, I'm <span className="font-medium text-foreground">Abdessamad ASKLOU</span>.
+                {language === 'fr' ? 'Bonjour, je suis ' : 'Hello, I\'m '}
+                <span className="font-medium text-foreground">Abdessamad ASKLOU</span>.
               </p>
               <p className="text-foreground/60 text-base leading-relaxed">
-                I work with businesses to develop ideas into practical and enjoyable embedded solutions. Building IoT
-                systems, firmware, and connected devices are the major things I'm concentrating on when it comes to
-                hardware and software integration.
+                {language === 'fr'
+                  ? "J'accompagne les entreprises pour transformer des idées en solutions embarquées pratiques et agréables. La conception de systèmes IoT, de firmwares et d'appareils connectés sont mes principaux centres d'intérêt en matière d'intégration matérielle et logicielle."
+                  : "I work with businesses to develop ideas into practical and enjoyable embedded solutions. Building IoT systems, firmware, and connected devices are the major things I'm concentrating on when it comes to hardware and software integration."}
               </p>
               <div className="pt-2">
-                <p className="text-sm font-medium text-foreground mb-3">My fields of expertise</p>
+                <p className="text-sm font-medium text-foreground mb-3">
+                  {language === 'fr' ? 'Mes domaines d\'expertise' : 'My fields of expertise'}
+                </p>
                 <p className="text-foreground/60 text-base leading-relaxed">
-                  Embedded Systems / IoT Development / Automation
+                  {language === 'fr' ? 'Systèmes Embarqués / Développement IoT / Automatisation' : 'Embedded Systems / IoT Development / Automation'}
                 </p>
               </div>
             </div>
@@ -76,7 +86,9 @@ export function HeroSection() {
                 asChild
               >
                 <a href="/Abdessamad ASKLOU CV.pdf" download>
-                  <span className="text-sm uppercase tracking-wider">Download CV</span>
+                  <span className="text-sm uppercase tracking-wider">
+                    {language === 'fr' ? 'Télécharger CV' : 'Download CV'}
+                  </span>
                   <Download className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </a>
               </Button>

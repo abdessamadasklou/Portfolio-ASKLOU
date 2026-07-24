@@ -1,4 +1,6 @@
+"use client"
 import Image from "next/image"
+import { useLanguage } from "@/lib/i18n/contexts"
 
 const universityLogos: Record<string, string> = {
   "Université Ibn Zohr, Agadir": "/logo tamayouz transparent.png",
@@ -6,39 +8,75 @@ const universityLogos: Record<string, string> = {
   "Groupe scolaire HANAA, Casablanca": "/hane.png",
 }
 
-const education = [
-  {
-    degree: "Master's in Computer Engineering and Embedded Systems",
-    program: "Excellence Program",
-    institution: "Université Ibn Zohr, Agadir",
-    period: "2024 - 2026",
-  },
-  {
-    degree: "Bachelor's in Computer Engineering and Embedded Systems",
-    program: "Excellence Program",
-    institution: "Université Ibn Zohr, Agadir",
-    period: "2024 - 2025",
-  },
-  {
-    degree: "Bachelor's in Physical Sciences",
-    program: "3rd Year",
-    institution: "Université IBN TOFAIL, Kenitra",
-    period: "2022 - 2023",
-  },
-  {
-    degree: "University Technology Diploma",
-    program: "Industrial Computing and Automated Systems",
-    institution: "Université IBN TOFAIL, Kenitra",
-    period: "2020 - 2022",
-  },
-  {
-    degree: "Baccalaureate in Physical Sciences",
-    institution: "Groupe scolaire HANAA, Casablanca",
-    period: "2019 - 2020",
-  },
-]
+const education = {
+  en: [
+    {
+      degree: "Master's in Computer Engineering and Embedded Systems",
+      program: "Excellence Program",
+      institution: "Université Ibn Zohr, Agadir",
+      period: "2024 - 2026",
+    },
+    {
+      degree: "Bachelor's in Computer Engineering and Embedded Systems",
+      program: "Excellence Program",
+      institution: "Université Ibn Zohr, Agadir",
+      period: "2024 - 2025",
+    },
+    {
+      degree: "Bachelor's in Physical Sciences",
+      program: "3rd Year",
+      institution: "Université IBN TOFAIL, Kenitra",
+      period: "2022 - 2023",
+    },
+    {
+      degree: "University Technology Diploma",
+      program: "Industrial Computing and Automated Systems",
+      institution: "Université IBN TOFAIL, Kenitra",
+      period: "2020 - 2022",
+    },
+    {
+      degree: "Baccalaureate in Physical Sciences",
+      institution: "Groupe scolaire HANAA, Casablanca",
+      period: "2019 - 2020",
+    },
+  ],
+  fr: [
+    {
+      degree: "Master en Ingénierie Informatique et Systèmes Embarqués",
+      program: "Filière d'Excellence",
+      institution: "Université Ibn Zohr, Agadir",
+      period: "2024 - 2026",
+    },
+    {
+      degree: "Licence en Ingénierie Informatique et Systèmes Embarqués",
+      program: "Filière d'Excellence",
+      institution: "Université Ibn Zohr, Agadir",
+      period: "2024 - 2025",
+    },
+    {
+      degree: "Licence en Sciences Physiques",
+      program: "3ème Année",
+      institution: "Université IBN TOFAIL, Kénitra",
+      period: "2022 - 2023",
+    },
+    {
+      degree: "Diplôme Universitaire de Technologie",
+      program: "Informatique Industrielle et Systèmes Automatisés",
+      institution: "Université IBN TOFAIL, Kénitra",
+      period: "2020 - 2022",
+    },
+    {
+      degree: "Baccalauréat en Sciences Physiques",
+      institution: "Groupe scolaire HANAA, Casablanca",
+      period: "2019 - 2020",
+    },
+  ]
+}
 
 export function EducationSection() {
+  const { language } = useLanguage()
+  const currentEducation = education[language]
+
   return (
     <section id="education" className="relative py-32 px-6 lg:px-12 border-b border-b-minimal">
       <div className="container mx-auto max-w-6xl">
@@ -47,17 +85,19 @@ export function EducationSection() {
             <div className="sticky top-32">
               <div className="space-y-4">
                 <div className="w-16 h-px bg-primary" />
-                <h2 className="text-5xl lg:text-6xl font-serif text-foreground">Education</h2>
+                <h2 className="text-5xl lg:text-6xl font-serif text-foreground">
+                  {language === 'fr' ? 'Éducation' : 'Education'}
+                </h2>
               </div>
             </div>
           </div>
 
           <div className="lg:col-span-8 space-y-10">
-            {education.map((edu, index) => (
+            {currentEducation.map((edu, index) => (
               <div key={index} className="space-y-3">
                 <div className="flex items-start gap-4">
                   <Image
-                    src={universityLogos[edu.institution] || "/placeholder.svg"}
+                    src={universityLogos[edu.institution] || universityLogos[edu.institution.replace('é', 'e')] || "/placeholder.svg"}
                     alt={edu.institution}
                     width={48}
                     height={48}

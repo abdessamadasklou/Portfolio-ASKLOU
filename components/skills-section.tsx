@@ -1,4 +1,7 @@
+"use client"
+
 import Image from "next/image"
+import { useLanguage } from "@/lib/i18n/contexts"
 
 const skillLogos: Record<string, string> = {
   Java: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
@@ -96,22 +99,33 @@ const skillCategories = [
 ]
 
 export function SkillsSection() {
+  const { language } = useLanguage()
+
+  const categoriesFr: Record<string, string> = {
+    "Programming": "Programmation",
+    "IoT & Communication": "IoT & Communication",
+    "Databases": "Bases de Données",
+    "Development Tools": "Outils de Développement",
+    "Embedded Systems": "Systèmes Embarqués",
+    "Automation": "Automatisation"
+  }
+
   return (
     <section id="skills" className="relative py-32 px-6 lg:px-12 bg-secondary/20">
       <div className="container mx-auto max-w-6xl">
         <div className="mb-20">
           <div className="flex items-baseline gap-4 mb-4">
             <div className="w-16 h-px bg-primary" />
-            <p className="text-sm uppercase tracking-widest text-muted-foreground">Technical</p>
+            <p className="text-sm uppercase tracking-widest text-muted-foreground">{language === 'fr' ? 'Technique' : 'Technical'}</p>
           </div>
-          <h2 className="text-6xl lg:text-7xl font-serif text-foreground">Skills</h2>
+          <h2 className="text-6xl lg:text-7xl font-serif text-foreground">{language === 'fr' ? 'Compétences' : 'Skills'}</h2>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
           {skillCategories.map((category, index) => (
             <div key={index} className="space-y-6">
               <h3 className="text-xl font-serif text-foreground pb-3 border-b border-foreground/10">
-                {category.category}
+                {language === 'fr' ? categoriesFr[category.category] || category.category : category.category}
               </h3>
               <ul className="space-y-3">
                 {category.skills.map((skill, i) => (

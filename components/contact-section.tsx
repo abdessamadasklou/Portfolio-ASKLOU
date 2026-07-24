@@ -1,8 +1,12 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
 import { Mail, Phone, Github, Linkedin } from "lucide-react"
 import Link from "next/link"
+import { useLanguage } from "@/lib/i18n/contexts"
 
 export function ContactSection() {
+  const { language } = useLanguage()
   return (
     <section id="contact" className="relative py-32 px-6 lg:px-12">
       <div className="container mx-auto max-w-6xl">
@@ -10,12 +14,15 @@ export function ContactSection() {
           <div className="space-y-8">
             <div className="space-y-4">
               <div className="w-16 h-px bg-primary" />
-              <h2 className="text-6xl lg:text-7xl font-serif text-foreground">Let's get in touch</h2>
+              <h2 className="text-6xl lg:text-7xl font-serif text-foreground">
+                {language === 'fr' ? 'Contactez-moi' : 'Let\'s get in touch'}
+              </h2>
             </div>
 
             <p className="text-lg text-foreground/60 leading-relaxed max-w-xl">
-              Got a project? Drop me a line if you want to work together on something exciting. Big or small. Mobile or
-              embedded.
+              {language === 'fr'
+                ? "Vous avez un projet ? N'hésitez pas à me contacter si vous souhaitez collaborer sur quelque chose d'intéressant. Petit ou grand. Mobile ou embarqué."
+                : "Got a project? Drop me a line if you want to work together on something exciting. Big or small. Mobile or embedded."}
             </p>
 
             <div className="pt-4">
@@ -25,7 +32,9 @@ export function ContactSection() {
                 asChild
                 className="border-foreground/20 hover:bg-foreground hover:text-background text-base px-8 bg-transparent"
               >
-                <a href="mailto:abdessamad.asklou@uit.ac.ma">Let's discuss your project ☕</a>
+                <a href="mailto:abdessamad.asklou@uit.ac.ma">
+                  {language === 'fr' ? 'Discutons de votre projet ☕' : 'Let\'s discuss your project ☕'}
+                </a>
               </Button>
             </div>
           </div>
@@ -52,7 +61,7 @@ export function ContactSection() {
             </Link>
 
             <div className="pt-8">
-              <p className="text-sm text-foreground/60 mb-4">Find me on</p>
+              <p className="text-sm text-foreground/60 mb-4">{language === 'fr' ? 'Retrouvez-moi sur' : 'Find me on'}</p>
               <div className="flex gap-6">
                 <Link
                   href="https://github.com/abdessamadasklou"
@@ -82,7 +91,9 @@ export function ContactSection() {
         </div>
 
         <footer className="mt-20 pt-8 border-t border-foreground/10 text-center">
-          <p className="text-sm text-foreground/50">© 2025 Abdessamad ASKLOU. All rights reserved.</p>
+          <p className="text-sm text-foreground/50">
+            {language === 'fr' ? '© 2025 Abdessamad ASKLOU. Tous droits réservés.' : '© 2025 Abdessamad ASKLOU. All rights reserved.'}
+          </p>
         </footer>
       </div>
     </section>

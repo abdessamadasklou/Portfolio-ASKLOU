@@ -4,48 +4,109 @@ import { ArrowUpRight } from "lucide-react"
 import Image from "next/image"
 import { useState } from "react"
 import Link from "next/link"
+import { useLanguage } from "@/lib/i18n/contexts"
 
-const projects = [
-  {
-    title: "TrackSecure",
-    subtitle: "IoT Package Tracking",
-    year: "2025",
-    image: "/Tracksecure.png",
-    description: "Complete IoT system for package tracking combining GPS and ESP82 gateway with MQTT/CoAP over TLS.",
-    technologies: ["IoT", "Kafka", "Apache Spark", "ML"],
-    githubUrl: "https://github.com/abdessamadasklou/parcel-tracking-iot-based",
-  },
-  {
-    title: "Warehouse Monitor",
-    subtitle: "Temperature System",
-    year: "2025",
-    image: "/Warehouse.png",
-    description: "Distributed system for real-time temperature and humidity monitoring using Java RMI and Spring Boot.",
-    technologies: ["Java RMI", "Spring Boot", "IoT"],
-    githubUrl: "https://github.com/abdessamadasklou/SDR-Project",
-  },
-  {
-    title: "Motion Detection",
-    subtitle: "Smart Security",
-    year: "2025",
-    image: "/Motion.png",
-    description: "Intelligent motion detection combining Arduino UNO and OpenCV for real-time identification.",
-    technologies: ["Arduino", "OpenCV", "Python"],
-    githubUrl: "https://github.com/abdessamadasklou/Projet-Detection-de-mouvement",
-  },
-  {
-    title: "Smart Lock",
-    subtitle: "Door Security",
-    year: "2022",
-    image: "/LOCK.png",
-    description: "Automatic door lock system based on ESP32-CAM and BLYNK Cloud application.",
-    technologies: ["ESP32-CAM", "Blynk", "IoT"],
-    githubUrl: "https://drive.google.com/drive/u/1/folders/1vF1R62h7uunyehtfrWAlfpydPO90LuaY",
-  },
-]
+const projects = {
+  en: [
+    {
+      title: "Sofrel S550",
+      subtitle: "Pumping Station Automation",
+      year: "2026",
+      image: "/plcme.png",
+      description: "Complete hydraulic remote management system combining the SOFREL S550 PLC and PCWin SCADA supervision for automated pumping station control via GSM network.",
+      technologies: ["RTU", "SCADA", "IoT"],
+      githubUrl: "https://github.com/abdessamadasklou/Systeme-de-telegestion-avec-lautomate-SOFREL-S550.git",
+    },
+    {
+      title: "TrackSecure",
+      subtitle: "IoT Package Tracking",
+      year: "2025",
+      image: "/Tracksecure.png",
+      description: "Complete IoT system for package tracking combining GPS and ESP82 gateway with MQTT/CoAP over TLS.",
+      technologies: ["IoT", "Kafka", "Apache Spark", "ML"],
+      githubUrl: "https://github.com/abdessamadasklou/parcel-tracking-iot-based",
+    },
+    {
+      title: "Warehouse Monitor",
+      subtitle: "Temperature System",
+      year: "2025",
+      image: "/Warehouse.png",
+      description: "Distributed system for real-time temperature and humidity monitoring using Java RMI and Spring Boot.",
+      technologies: ["Java RMI", "Spring Boot", "IoT"],
+      githubUrl: "https://github.com/abdessamadasklou/SDR-Project",
+    },
+    {
+      title: "Motion Detection",
+      subtitle: "Smart Security",
+      year: "2025",
+      image: "/Motion.png",
+      description: "Intelligent motion detection combining Arduino UNO and OpenCV for real-time identification.",
+      technologies: ["Arduino", "OpenCV", "Python"],
+      githubUrl: "https://github.com/abdessamadasklou/Projet-Detection-de-mouvement",
+    },
+    {
+      title: "Smart Lock",
+      subtitle: "Door Security",
+      year: "2022",
+      image: "/LOCK.png",
+      description: "Automatic door lock system based on ESP32-CAM and BLYNK Cloud application.",
+      technologies: ["ESP32-CAM", "Blynk", "IoT"],
+      githubUrl: "https://drive.google.com/drive/u/1/folders/1vF1R62h7uunyehtfrWAlfpydPO90LuaY",
+    },
+  ],
+  fr: [
+    {
+      title: "Sofrel S550",
+      subtitle: "Automatisation d'une station de pompage",
+      year: "2026",
+      image: "/plcme.png",
+      description: "Système complet de télégestion hydraulique combinant l'automate SOFREL S550 et la supervision SCADA PCWin pour le pilotage automatisé d'une station de pompage via réseau GSM.",
+      technologies: ["RTU", "SCADA", "IoT"],
+      githubUrl: "https://github.com/abdessamadasklou/Systeme-de-telegestion-avec-lautomate-SOFREL-S550.git",
+    },
+    {
+      title: "TrackSecure",
+      subtitle: "Suivi de Colis IoT",
+      year: "2025",
+      image: "/Tracksecure.png",
+      description: "Système IoT complet pour le suivi de colis combinant GPS et passerelle ESP82 avec MQTT/CoAP sur TLS.",
+      technologies: ["IoT", "Kafka", "Apache Spark", "ML"],
+      githubUrl: "https://github.com/abdessamadasklou/parcel-tracking-iot-based",
+    },
+    {
+      title: "Warehouse Monitor",
+      subtitle: "Système de Température",
+      year: "2025",
+      image: "/Warehouse.png",
+      description: "Système distribué pour la surveillance de température et d'humidité en temps réel avec Java RMI et Spring Boot.",
+      technologies: ["Java RMI", "Spring Boot", "IoT"],
+      githubUrl: "https://github.com/abdessamadasklou/SDR-Project",
+    },
+    {
+      title: "Motion Detection",
+      subtitle: "Sécurité Intelligente",
+      year: "2025",
+      image: "/Motion.png",
+      description: "Détection de mouvement intelligente combinant Arduino UNO et OpenCV pour une identification en temps réel.",
+      technologies: ["Arduino", "OpenCV", "Python"],
+      githubUrl: "https://github.com/abdessamadasklou/Projet-Detection-de-mouvement",
+    },
+    {
+      title: "Smart Lock",
+      subtitle: "Sécurité de Porte",
+      year: "2022",
+      image: "/LOCK.png",
+      description: "Système de verrouillage automatique de porte basé sur l'ESP32-CAM et l'application Cloud BLYNK.",
+      technologies: ["ESP32-CAM", "Blynk", "IoT"],
+      githubUrl: "https://drive.google.com/drive/u/1/folders/1vF1R62h7uunyehtfrWAlfpydPO90LuaY",
+    },
+  ]
+}
 
 export function ProjectsSection() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const { language } = useLanguage()
+  const currentProjects = projects[language]
 
   return (
     <section id="projects" className="relative py-32 px-6 lg:px-12 bg-secondary/30">
@@ -53,13 +114,13 @@ export function ProjectsSection() {
         <div className="mb-20">
           <div className="flex items-baseline gap-4 mb-4">
             <div className="w-16 h-px bg-primary" />
-            <p className="text-sm uppercase tracking-widest text-muted-foreground">My</p>
+            <p className="text-sm uppercase tracking-widest text-muted-foreground">{language === 'fr' ? 'Mes' : 'My'}</p>
           </div>
-          <h2 className="text-6xl lg:text-7xl font-serif text-foreground">Works</h2>
+          <h2 className="text-6xl lg:text-7xl font-serif text-foreground">{language === 'fr' ? 'Projets' : 'Works'}</h2>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">
-          {projects.map((project, index) => (
+          {currentProjects.map((project, index) => (
             <Link
               href={project.githubUrl}
               target="_blank"

@@ -7,11 +7,14 @@ import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
 
+import { useLanguage } from "@/lib/i18n/contexts"
+import { Languages } from "lucide-react"
+
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
-
+  const { language, setLanguage } = useLanguage()
   useEffect(() => {
     setMounted(true)
     const handleScroll = () => {
@@ -42,13 +45,13 @@ export function Navigation() {
         <div className="flex items-center justify-end w-full gap-12">
           <div className="hidden md:flex items-center gap-12">
             <Link href="#about" className="text-sm uppercase tracking-wider hover:text-primary transition-colors">
-              About
+              {language === 'fr' ? 'À propos' : 'About'}
             </Link>
             <Link href="#experience" className="text-sm uppercase tracking-wider hover:text-primary transition-colors">
-              Experience
+              {language === 'fr' ? 'Expérience' : 'Experience'}
             </Link>
             <Link href="#projects" className="text-sm uppercase tracking-wider hover:text-primary transition-colors">
-              Work
+              {language === 'fr' ? 'Projets' : 'Work'}
             </Link>
             <Link href="#contact" className="text-sm uppercase tracking-wider hover:text-primary transition-colors">
               Contact
@@ -90,15 +93,26 @@ export function Navigation() {
             </Link>
 
             {mounted && (
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-                className="text-foreground/60 hover:text-primary"
-              >
-                {resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-                <span className="sr-only">Toggle theme</span>
-              </Button>
+              <>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => setLanguage(language === "en" ? "fr" : "en")}
+                  className="font-medium text-foreground/80 hover:text-primary flex items-center gap-2"
+                >
+                  <Languages className="h-4 w-4" />
+                  <span className="text-xs uppercase">{language}</span>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+                  className="text-foreground/60 hover:text-primary"
+                >
+                  {resolvedTheme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </>
             )}
           </div>
         </div>
