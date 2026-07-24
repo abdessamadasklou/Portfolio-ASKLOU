@@ -24,8 +24,8 @@ export function AboutSection() {
             <div className="space-y-6 text-foreground/70 text-lg leading-relaxed">
               <p>
                 {language === 'fr'
-                  ? "Je suis actuellement étudiant en 2ème année de Master Ingénierie Informatique et Systèmes Embarqués à l'Université Ibn Zohr, Agadir. Ma passion se situe à l'intersection du matériel et du logiciel, où je me concentre sur la création de solutions intelligentes et automatisées pour des problèmes du monde réel."
-                  : "I am currently a 2nd-year Master's student in Computer Engineering and Embedded Systems at Université Ibn Zohr, Agadir. My passion lies in the intersection of hardware and software, where I focus on creating intelligent, automated solutions for real-world problems."}
+                  ? "Titulaire d'un Master d'Excellence en Ingénierie Informatique et Systèmes Embarqués de l'Université Ibn Zohr, Agadir, je me passionne pour l'intersection entre le matériel et le logiciel. Je conçois des solutions intelligentes et automatisées pour répondre à des problématiques concrètes, avec une spécialisation en automatisme, télégestion et systèmes embarqués."
+                  : "Holder of a Master's Degree with Excellence in Computer Engineering and Embedded Systems from Université Ibn Zohr, Agadir, I am passionate about the intersection of hardware and software. I design intelligent, automated solutions to solve real-world problems, with a specialization in automation, remote monitoring systems, and embedded systems."}
               </p>
 
               <p>
